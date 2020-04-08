@@ -10,6 +10,6 @@ class Genre extends Model
     // 1 genre => obtenir tous ses livres
     public function books(){
 
-        return $htis->hasMany(Book::class);
+        return $this->hasMany(Book::class);
     }
 }

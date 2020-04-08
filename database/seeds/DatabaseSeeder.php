@@ -5,14 +5,14 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
+    * Seed the application's database.
+    *
+    * @return void
+    */
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-
+        
         DB::table('users')->insert([
             [
                 'name' => 'Alan',
@@ -24,6 +24,12 @@ class DatabaseSeeder extends Seeder
                 'email' => 'alice@alice.fr',
                 'password' => '1234'
             ],
-        ]);
+            ]);
+            
+            // Création de 10 authors en utilisant la factory
+            // la fonction factory de Laravel permet d'utiliser le facker définit
+            factory(App\Author::class, 10)->create();
+            $this->call(BookTableSeeder::class);
+        }
     }
-}
+    
