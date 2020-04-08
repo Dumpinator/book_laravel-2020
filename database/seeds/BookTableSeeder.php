@@ -23,7 +23,7 @@ class BookTableSeeder extends Seeder
         // Supprimer toutes les images si elles existent dans le dossier images
         Storage::disk('local')->delete( Storage::allFiles() );
 
-        factory(App\Book::class, 2)->create()->each(function($book){
+        factory(App\Book::class, 1)->create()->each(function($book){
 
             // Un objet hydraté par une ligne de la table books
             // dump($book->title);
@@ -55,6 +55,18 @@ class BookTableSeeder extends Seeder
                 'title' => 'Default',
                 'link' => $link
             ]);
+            
+            /*
+            $books->authors()->get(); // $book->authors; // accède aux authors dans
+            $book->genre()->get(); // $book->genre;
+            $book->picture(); // $book->picture;
+            */
+
+            // Plusieurs auteurs par livre on récupère 5 auteurs aléatoirement (shuffle méthode de Laravel sur une collection)
+            // la méthode slice de Laravel permet de coupé 5 auteurs
+            $authors = App\Author::pluck('id')->shuffle()->slice(0,5);
+
+            $book->authors()->attach( $authors );
 
         });
     }
