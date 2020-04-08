@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBooksTable extends Migration
+class CreatePicturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateBooksTable extends Migration
      */
     public function up()
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('pictures', function (Blueprint $table) {
             $table->id();
+            $table->string('link', 100);
             $table->string('title', 100);
-            $table->text('description')->nullable();
-            $table->dateTime('published_at')->nullable();
-            $table->enum('status', ['published', 'unpublished'])->default('unpublished');
+            $table->foreignId('book_id') 
+                ->constrained() 
+                ->onDelete('CASCADE'); 
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateBooksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('pictures');
     }
 }
