@@ -1,6 +1,7 @@
 <html lang="{{ app()->getLocale() }}">
     <head>
         <title>App Name - @yield('title')</title>
+        
         {{-- asset calcule le chemin vers le dossier des JS --}}
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" >
     </head>
