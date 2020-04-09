@@ -18,7 +18,8 @@ class CreateBooksTable extends Migration
             $table->string('title', 100);
             $table->text('description')->nullable();
             $table->dateTime('published_at')->nullable();
-            $table->enum('status', ['published', 'unpublished'])->default('unpublished');
+            // le type ENUM en MySQL c'est une chaîne de caractères qui ne peut prendre que les valeurs que tu définis
+            $table->enum('status', ['published', 'unpublished', 'draft'])->default('unpublished');
             $table->timestamps();
         });
     }
