@@ -10,6 +10,7 @@ $factory->define(Book::class, function (Faker $faker) {
         'title' => $faker->sentence(),
         'description' => $faker->paragraph(), // pas de s à paragraph si "s" c'est un tableau dans Faker
         'published_at' => $faker->dateTime(),
-        'status' => $faker->randomElement(['published', 'unpublished'])
+        'status' => $faker->randomElement(['published', 'unpublished']),
+        'score' => $faker->randomFloat(1, 0, 20)
     ];
 });

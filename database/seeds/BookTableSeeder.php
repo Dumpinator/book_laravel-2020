@@ -68,6 +68,8 @@ class BookTableSeeder extends Seeder
 
             $book->authors()->attach( $authors );
 
+            
+
         });
     }
 }
