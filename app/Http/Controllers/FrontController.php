@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 
 // L'import du namespace
 use App\Book;
+use App\Author;
 
 class FrontController extends Controller
 {
 
     private $paginate = 5;
+    private $paginateAuthor = 2;
+
 
     public function index(){
 
@@ -25,6 +28,21 @@ class FrontController extends Controller
     // le paramètre $id est récupéré dans la route
     public function show(int $id){
 
-        return Book::find($id);
+        $book = Book::find($id);
+
+        return view('front.show', ['book' => $book]);
+    }
+
+    // récupérer tous les livres d'un auteur
+    public function showAuthor(int $id){
+
+        // relation ManyToMany pour récupérer tous les livres d'un auteur
+        // avec de la pagination 
+        // $books = Author::find($id)->books // on récupère tous les livres d'un auteur
+
+        // on récupère tous les livres d'un auteur avec la pagination
+        $books = Author::find($id)->books()->paginate( $this->paginateAuthor );
+
+        return view('front.author', ['books' => $books]);
     }
 }
