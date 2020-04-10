@@ -13,13 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // des URI book/1, book/2 le paramètre {id} est paramètre variable
 // récupérer par la méthode show
 Route::get('book/{id}', 'FrontController@show');
 
 // page index 
-Route::get('/books', 'FrontController@index');
+Route::get('/', 'FrontController@index');

@@ -6,19 +6,32 @@ Page des books
 
 @section('content')
 
-@foreach ($books as $book)
-    <p>{{ $book->title }}</p>
-   
-    <p>Les auteurs si ils existent du livre </p>
-    <ul>
-    @forelse($book->authors as $author)
-        <li>{{ $author->name }}</li>
-    @empty
-        <li>Aucun auteur pour ce livre </li>
-    @endforelse
-    </ul>
-@endforeach
+{{-- pagination de Laravel --}}
+{{ $books->links() }}
+<h1>Tous les livres</h1>
+<ul class="list-group">
+@forelse($books as $book)
+    <li class="list-group-item">
+        <h2><a href="">{{ $book->title }}</a></h2>
+        @if( is_null($book->score) == false)
+        <p>Score : {{ $book->score}}</p>
+        @endif
+        @if( is_null($book->picture) == false)
+        <div class="row">
+           <div class="col-xs-6 col-md-3">
+                <a href="">
+                    <img width="171" src="{{ asset('images/' . $book->picture->link ) }}" alt="{{ $book->picture->title }}" />
+                </a>
+           </div>
+        </div>
+        @endif
+    </li>
+@empty
+@endforelse
+</ul>
 
+{{-- pagination de Laravel --}}
+{{ $books->links() }}
 @endsection
 
 

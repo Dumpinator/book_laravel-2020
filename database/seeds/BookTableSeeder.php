@@ -51,6 +51,7 @@ class BookTableSeeder extends Seeder
             // à partir du modèle book on invoque le modèle picture et on demande 
             // au modèle picture d'enregistrer une ligne dans sa table
             // en récupérant l'id du book
+            // books pictures
             $book->picture()->create([
                 'title' => 'Default',
                 'link' => $link

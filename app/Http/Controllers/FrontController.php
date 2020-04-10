@@ -10,9 +10,11 @@ use App\Book;
 class FrontController extends Controller
 {
 
+    private $paginate = 5;
+
     public function index(){
 
-        $books = Book::all();
+        $books = Book::paginate($this->paginate);
 
         // Le premier paramètre c'est le nom de votre vue
         // le point désigne le fait que vous allez chercher un fichier se trouvant dans un dossier

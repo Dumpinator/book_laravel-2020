@@ -1,20 +1,31 @@
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
-    <head>
-        <title>App Name - @yield('title')</title>
-        
-        {{-- asset calcule le chemin vers le dossier des JS --}}
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet" >
-    </head>
-    <body class="content-body" >
-        @section('sidebar')
-            This is the master sidebar.
-            Un menu secondaire partout ...
-        @show
-
-        <div class="container">
-            <h1>Les books de notre site</h1>
-            @yield('content')
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title')</title>
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+           @include('partials.menu')
         </div>
-        <script src="{{asset('js/app.js')}}"></script>
-    </body>
+    </div>
+    <div class="row">
+    <div class="col-md-12">
+        @yield('content')
+    </div>
+    </div>
+</div>
+@section('scripts')
+<script src="{{asset('js/app.js')}}"></script>
+@show
+
+@section('note')
+Je suis un première note
+@show
+</body>
 </html>
