@@ -23,9 +23,5 @@
 @section('scripts')
 <script src="{{asset('js/app.js')}}"></script>
 @show
-
-@section('note')
-Je suis un première note
-@show
 </body>
 </html>

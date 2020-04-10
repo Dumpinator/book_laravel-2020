@@ -13,7 +13,6 @@ Page des books
 @forelse($books as $book)
     <li class="list-group-item">
         <h2><a href="{{ route('show_book', $book->id) }}">{{ $book->title }}</a></h2>
-        {{ route('show_book', $book->id) }}
         @if( is_null($book->score) == false)
         <p>Score : {{ $book->score}}</p>
         @endif

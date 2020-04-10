@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 // L'import du namespace
 use App\Book;
 use App\Author;
+use App\Genre;
 
 class FrontController extends Controller
 {
@@ -14,9 +15,15 @@ class FrontController extends Controller
     private $paginate = 5;
     private $paginateAuthor = 2;
 
+    public function __construct(){
+        view()->composer('partials.menu', function($view){
+            $genres = Genre::pluck('name', 'id');
+            $view->with('genres', $genres);
+        });
+
+    }
 
     public function index(){
-
         $books = Book::paginate($this->paginate);
 
         // Le premier paramètre c'est le nom de votre vue
@@ -27,7 +34,6 @@ class FrontController extends Controller
     // int permet de vérifier le type du paramètre de ma fonction
     // le paramètre $id est récupéré dans la route
     public function show(int $id){
-
         $book = Book::find($id);
 
         return view('front.show', ['book' => $book]);
@@ -35,7 +41,6 @@ class FrontController extends Controller
 
     // récupérer tous les livres d'un auteur
     public function showAuthor(int $id){
-
         // relation ManyToMany pour récupérer tous les livres d'un auteur
         // avec de la pagination 
         // $books = Author::find($id)->books // on récupère tous les livres d'un auteur
@@ -44,5 +49,17 @@ class FrontController extends Controller
         $books = Author::find($id)->books()->paginate( $this->paginateAuthor );
 
         return view('front.author', ['books' => $books]);
+    }
+
+    public function showGenre(int $id){
+
+        $genre = Genre::find($id);
+
+        $books = $genre->books()->paginate($this->paginate);
+
+        return view('front.genre', [
+            'books' => $books,
+            'name' => $genre->name
+            ]);
     }
 }
