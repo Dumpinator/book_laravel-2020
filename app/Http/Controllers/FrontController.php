@@ -15,14 +15,11 @@ class FrontController extends Controller
     private $paginate = 5;
     private $paginateAuthor = 2;
 
-=======
     public function __construct(){
         view()->composer('partials.menu', function($view){
             $genres = Genre::pluck('name', 'id');
             $view->with('genres', $genres);
         });
->>>>>>> f11a007979ccebbd9d4e1331c7086f348a9bb280
-
     }
 
     public function index(){
