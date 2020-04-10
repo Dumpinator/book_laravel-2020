@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 // L'import du namespace
 use App\Book;
 use App\Author;
+use App\Genre;
 
 class FrontController extends Controller
 {
 
     private $paginate = 5;
     private $paginateAuthor = 2;
+
+    public function __construct()
+    {
+        $genres = Genre::pluck('name', 'id');
+    }
 
 
     public function index(){
