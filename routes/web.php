@@ -23,3 +23,8 @@ Route::get('genre/{id}', 'FrontController@showGenre')->name('show_book_genre');
 
 // page index 
 Route::get('/', 'FrontController@index')->name('home');
+
+Auth::routes();
+
+// On connecte l'ensemble des routes à nos actions du controller de ressources BookController
+Route::resource('book', 'BookController')->middleware('auth');

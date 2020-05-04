@@ -24,6 +24,11 @@ class DatabaseSeeder extends Seeder
                 'email' => 'alice@alice.fr',
                 'password' => '1234'
             ],
+            [
+                'name' => 'admin',
+                'email' => 'admin@admin.fr',
+                'password' => Hash::make('admin')
+            ],
             ]);
             
             // Création de 10 authors en utilisant la factory

@@ -9,12 +9,13 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{route('home')}}">Aucceil</a></li> 
+                <li class="active"><a href="{{route('home')}}">Acceuil</a></li> 
                 @foreach($genres as $id => $name)
                 <li class="active"><a href="{{route('show_book_genre', $id)}}">{{ $name }}</a></li>
                 @endforeach
             </ul>
             <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="{{route('home')}}">Logout</a></li> 
             </ul>
         </div>
     </div>
